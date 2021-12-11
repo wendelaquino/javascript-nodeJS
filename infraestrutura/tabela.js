@@ -1,7 +1,7 @@
 class Tabelas {
     init(conexao) {
         this.conexao = conexao
-    
+        
         this.criarAtendimento()
     }
 

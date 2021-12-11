@@ -1,7 +1,16 @@
 const customExpress = require('./config/customExpress')
-const pool = require('./conexao')
+const conexao = require('./infraestrutura/conexao')
+const Tabelas = require('./infraestrutura/tabela')
 
+conexao.connect(erro => {
+    if (erro){
+        console.log(erro)
+    } else{
+        console.log('conectado com sucesso')
+        
+        Tabelas.init(conexao)
+        const app = customExpress()
 
-const app = customExpress()
-
-app.listen(3000, () => console.log('servidor rodando na porta 3000'))
+        app.listen(3000, () => console.log('servidor rodando na porta 3000'))
+    }
+} )

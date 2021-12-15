@@ -7,11 +7,19 @@ class Pet {
    
         const query = ' INSERT INTO Pets SET ?'
 
-        uploadArquivo(pet.imagem, pet.nome, (novoCaminho) => {
-   
-            const novoPet = {nome: pet.nome, imagem: novoCaminho}
+        uploadArquivo(pet.imagem, pet.nome, (novoCaminho, erro) => {
+            
+            if( erro ){
 
-            conexao.query(query, novoPet, erro => (erro ? res.status(400).json(erro) : res.status(200).json(pet)))
+                res.status(400).json(erro);
+
+            }else{
+
+                const novoPet = {nome: pet.nome, imagem: novoCaminho}
+
+                conexao.query(query, novoPet, erro => (erro ? res.status(400).json(erro) : res.status(200).json(pet)))
+
+            }
         })
     }
 }

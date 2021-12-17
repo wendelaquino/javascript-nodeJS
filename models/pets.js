@@ -9,7 +9,7 @@ class Pet {
 
         uploadArquivo(pet.imagem, pet.nome, (novoCaminho, erro) => {
             
-            if( erro ){
+            if(erro){
 
                 res.status(400).json(erro);
 

@@ -15,7 +15,8 @@ class Tabelas {
     criarPets(){
         const query = 'CREATE TABLE IF NOT EXISTS Pets (id INT NOT NULL AUTO_INCREMENT, name VARCHAR(50), imagem varchar(200), primary key (id))'
 
-        this.conexao.query(query, () => (erro ? console.log(erro) : console.log('Tabela Pets foi criada com sucesso')))
+        this.conexao.query(query, erro => (erro ? console.log(erro) : console.log('Tabela Pets foi criada com sucesso')))
+
     }
 }
 
